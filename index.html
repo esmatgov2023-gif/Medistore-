@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="MediStore - متجر الأجهزة الطبية والمستهلكات الطبية">
+    <meta name="theme-color" content="#2c2c2c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MediStore">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%232c2c2c' width='192' height='192'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='120' fill='white'>🏥</text></svg>">
+    <title>MediStore - متجر الأجهزة الطبية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-title">MediStore</div>
+        <button class="menu-btn" onclick="toggleMenu()">≡</button>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <div class="content">
+            <!-- Brand Section -->
+            <div class="brand-section">
+                <div class="brand-name">MediStore</div>
+            </div>
+
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-title">مرحباً بك في MediStore</div>
+                <div class="welcome-subtitle">أفضل المنتجات الطبية والأجهزة الحديثة</div>
+            </div>
+
+            <!-- Categories Section -->
+            <div class="categories-section">
+                <h3 class="section-title">الفئات</h3>
+                <div class="categories">
+                    <button class="category-btn active" data-category="all">الكل</button>
+                    <button class="category-btn" data-category="devices">أجهزة</button>
+                    <button class="category-btn" data-category="supplies">مستهلكات</button>
+                    <button class="category-btn" data-category="offers">إكسسوارات</button>
+                </div>
+            </div>
+
+            <!-- Products Section -->
+            <div class="products-section">
+                <h3 class="section-title">جميع المنتجات</h3>
+                <div class="products-container" id="productsGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Cart Button -->
+    <button class="floating-cart" onclick="openCart()" title="السلة">
+        🛒
+        <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeCart()">✕</button>
+            <div class="cart-title">🛒 سلة المشتريات</div>
+            <div id="cartItems"></div>
+            <div class="cart-summary" id="cartSummary" style="display: none;">
+                <div class="total-row">
+                    <span id="totalPrice">0 ريال</span>
+                    <span>الإجمالي:</span>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">إكمال الشراء 💳</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js').catch(err => {
+                console.log('Service Worker registration failed:', err);
+            });
+        }
+    </script>
+</body>
+</html>
